@@ -13,42 +13,6 @@ class UserRepository
     $this->connection = $connection;
   }
 
-  public function save(User $user): User
-  {
-    $statement = $this->connection->prepare(
-      'INSERT INTO Pengguna(IdPengguna, NamaPengguna, Password, NamaDepan, NamaBelakang, NoHp, Alamat, IdAkses) VALUES (?,?,?,?,?,?,?,?)'
-    );
-    $statement->execute([
-      $user->IdPengguna,
-      $user->NamaPengguna,
-      $user->Password,
-      $user->NamaDepan,
-      $user->NamaBelakang,
-      $user->NoHp,
-      $user->Alamat,
-      $user->IdAkses,
-    ]);
-    return $user;
-  }
-
-  public function update(User $user): User
-  {
-    $statement = $this->connection->prepare(
-      'UPDATE Pengguna SET NamaPengguna = ?, Password = ?, NamaDepan = ?, NamaBelakang = ?, NoHp = ?, Alamat = ?, IdAkses = ? WHERE IdPengguna = ?'
-    );
-    $statement->execute([
-      $user->NamaPengguna,
-      $user->Password,
-      $user->NamaDepan,
-      $user->NamaBelakang,
-      $user->NoHp,
-      $user->Alamat,
-      $user->IdAkses,
-      $user->IdPengguna,
-    ]);
-    return $user;
-  }
-
   public function findById(string $IdPengguna): ?User
   {
     $statement = $this->connection->prepare(

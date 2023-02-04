@@ -11,13 +11,11 @@ use WebApp\PHP\MVC\Repository\UserRepository;
 use WebApp\PHP\MVC\Service\AccessService;
 use WebApp\PHP\MVC\Service\ProductService;
 use WebApp\PHP\MVC\Service\SessionService;
-use WebApp\PHP\MVC\Service\UserService;
 
 class ProductController
 {
   private SessionService $sessionService;
   private AccessService $accessService;
-  private UserService $userService;
   private ProductService $productService;
 
   public function __construct()
@@ -29,7 +27,6 @@ class ProductController
     $userRepository = new UserRepository($connection);
     $productRepository = new ProductRepository($connection);
     $this->accessService = new AccessService($accessRepository);
-    $this->userService = new UserService($userRepository);
 
     $this->productService = new ProductService($productRepository);
 

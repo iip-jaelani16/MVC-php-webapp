@@ -9,13 +9,11 @@ use WebApp\PHP\MVC\Repository\SessionRepository;
 use WebApp\PHP\MVC\Repository\UserRepository;
 use WebApp\PHP\MVC\Service\AccessService;
 use WebApp\PHP\MVC\Service\SessionService;
-use WebApp\PHP\MVC\Service\UserService;
 
 class HomeController
 {
   private SessionService $sessionService;
   private AccessService $accessService;
-  private UserService $userService;
 
   public function __construct()
   {
@@ -25,8 +23,6 @@ class HomeController
     $accessRepository = new AccessRepository($connection);
     $userRepository = new UserRepository($connection);
     $this->accessService = new AccessService($accessRepository);
-    $this->userService = new UserService($userRepository);
-
     $this->sessionService = new SessionService(
       $sessionRepository,
       $userRepository
